@@ -1,0 +1,28 @@
+project-meta:
+  project-name: PerlUtils
+  date-started: 2026-10-20
+  last-updated: 2026-10-20
+  languages:
+    - Perl
+  status: Experimental
+  license: MIT
+  version: 0.0.1
+
+build:
+  dev-environments:
+    - Ubuntu (WSL)
+  test-environments:
+    - Ubuntu (WSL)
+  target-platforms:
+    - Linux
+  interpreter:
+    interpreter-name: perl
+    interpreter-version: 5.38.2
+
+team:
+  author: Ethan Kletschke
+  contributors:
+    - name: Ethan Kletschke
+      role: Author and Owner
+      github-username: ByteMeHahaha
+      website: https://ethankportfolio.netlify.app
