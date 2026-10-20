@@ -1,4 +1,4 @@
-package Utils::OS;
+package Utils::OS::LineCounter;
 
 use strict;
 use warnings;
