@@ -6,6 +6,6 @@ use strict;
 use warnings;
 
 # My modules
-use Utils::OS::LineCounter;
+use Utils::OS::LineCounter qw(linecount);
 
 print "Lines: ", linecount("main.pl"), "\n";
