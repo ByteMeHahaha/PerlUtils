@@ -18,6 +18,7 @@ EOF
 ;
 close $fh;
 
+# Test that the linecount subroutine correctly returns 4
 is(
   linecount("testing.tmp"),
   4,
@@ -27,4 +28,5 @@ is(
 # Delete the testing file
 unlink "testing.tmp";
 
+# Conclude tests for this module
 done_testing();
