@@ -25,6 +25,12 @@ is(
   "Line count should be 4"
 );
 
+is(
+  linecount("nonexistent.txt"),
+  0,
+  "Returns 0 when the file doesn't exist"
+);
+
 # Delete the testing file
 unlink "testing.tmp";
 

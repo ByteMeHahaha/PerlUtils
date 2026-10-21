@@ -16,7 +16,7 @@ sub count_logs_by_type {
     die "File name not provided";
   }
 
-  # Open the specified log file
+  # Open the specified log file for reading ('<')
   open my $fh, "<", $filename
     or die "Cannot open file \"$filename\": $!";
 

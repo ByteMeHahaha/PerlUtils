@@ -4,28 +4,38 @@ use strict;
 use warnings;
 use Exporter 'import';
 
+# Can specifically choose for import
 our @EXPORT_OK = qw(linecount);
+# Default exports
 our @EXPORT = qw(linecount);
 
 sub linecount {
+  # Extract the filename from the arguments list
   my ($filename) = @_;
 
-  open my $fh, '<', "$filename"
-    or die "Cannot open file \"$filename\": $!";
-
-  if (-z $fh) {
+  # If the file doesn't exist
+  unless (-e $filename) {
+    # Return the line count as zero
     return 0;
   }
 
+  # Open the specified file for reading ('<')
+  open my $fh, '<', "$filename"
+    or die "Cannot open file \"$filename\": $!";
+
+  # Declare a variable for the line count
   my $lc = 0;
 
+  # Loop through the file's individual lines
   while (my $line = <$fh>) {
+    # Increase the line count by 1 for each line
     $lc++;
   }
 
-  close $fh
-    or die "Could not close \"$filename\": $!";
+  # Close the file
+  close $fh or die "Could not close \"$filename\": $!";
 
+  # Return the line count
   return $lc;
 }
 
