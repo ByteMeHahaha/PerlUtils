@@ -11,8 +11,8 @@ sub count_logs_by_type {
   my ($log_type, $filename) = @_;
 
   # If the filename is not provided as an argument
+  unless (defined($log_type) && defined($filename)) {
     # Abort the app (Temporary Code)
-  unless (defined($filename)) {
     die "File name not provided";
   }
 
@@ -28,7 +28,7 @@ sub count_logs_by_type {
     chomp($line);
 
     # If the start of the line doesn't match the regex (see readme)
-    unless ($line =~ /^\[([a-zA-Z]+)\]/) {
+    unless ($line =~ /^\[?([a-zA-Z]+)\]?/) {
       # Abort the program (temporary code)
       die "No matching log line\n";
     }
