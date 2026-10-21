@@ -1,6 +1,6 @@
 # PerlUtils
 
-Utility scripts written in Perl.
+Utility modules written in Perl, for Perl.
 
 - Author: Ethan Kletschke
 - Version: `0.0.1`
