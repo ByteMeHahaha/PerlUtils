@@ -11,7 +11,7 @@ sub linecount {
   my ($filename) = @_;
 
   open my $fh, '<', "$filename"
-    or die "Cannot open file \"$filename\": $!\n";
+    or die "Cannot open file \"$filename\": $!";
 
   if (-z $fh) {
     return 0;
@@ -23,7 +23,8 @@ sub linecount {
     $lc++;
   }
 
-  close $fh;
+  close $fh
+    or die "Could not close \"$filename\": $!";
 
   return $lc;
 }
