@@ -18,17 +18,25 @@ EOF
 ;
 close $fh;
 
-# Test that the linecount subroutine correctly returns 4
+# Test that the linecount subroutine correctly returns a count of 4
 is(
   linecount("testing.tmp"),
   4,
-  "Line count should be 4"
+  "Correctly counts four lines"
 );
 
+# Test that the linecount subroutine returns a count of 0 for a non-existent file
 is(
   linecount("nonexistent.txt"),
   0,
   "Returns 0 when the file doesn't exist"
+);
+
+# Test that the linecount subroutine doesn't return 0 for an existing file
+isnt(
+  linecount("testing.tmp"),
+  0,
+  "Doesn't return 0 for an existing file"
 );
 
 # Delete the testing file
