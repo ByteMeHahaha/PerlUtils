@@ -28,6 +28,8 @@ sub linecount {
 
   # Loop through the file's individual lines
   while (my $line = <$fh>) {
+    # Remove the \n from the line
+    chomp($line);
     # Increase the line count by 1 for each line
     $lc++;
   }
