@@ -42,6 +42,24 @@ sub linecount {
 }
 
 sub non_empty_linecount {
+  my ($filename) = @_;
+
+  unless (-e $filename) {
+    return 0;
+  }
+
+  open my $fh, '<', $filename or die "Could not open \"$filename\": $!";
+
+  my $lc = 0;
+
+  while (my $line = <$fh>) {
+    chomp($line);
+    $lc++ if length($line);
+  }
+
+  close $fh or die "Could not close \"$filename\": $!";
+
+  return $lc;
 }
 
 1;
