@@ -33,6 +33,7 @@ sub count_logs_by_type {
       die "No matching log line\n";
     }
 
+    # Increase the count of the log type
     $log_count{$1}++;
   }
 
