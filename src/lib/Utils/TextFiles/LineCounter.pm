@@ -5,7 +5,7 @@ use warnings;
 use Exporter 'import';
 
 # Can specifically choose for import
-our @EXPORT_OK = qw(linecount);
+our @EXPORT_OK = qw(linecount non_empty_linecount);
 # Default exports
 our @EXPORT = qw(linecount);
 
@@ -37,6 +37,9 @@ sub linecount {
 
   # Return the line count
   return $lc;
+}
+
+sub non_empty_linecount {
 }
 
 1;
