@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use Test::More;
 
-use Utils::OS::LineCounter qw(linecount);
+use Utils::TextFiles::LineCounter qw(linecount);
 
 # Write a test file to test the function results against
 open my $fh, ">", "testing.tmp" or die "Could not create testing.tmp: $!\n";
