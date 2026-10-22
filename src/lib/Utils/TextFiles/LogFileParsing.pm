@@ -30,7 +30,7 @@ sub count_logs_by_type {
     # If the start of the line doesn't match the regex (see readme)
     unless ($line =~ /^\[?([a-zA-Z]+)\]?/) {
       # Abort the program (temporary code)
-      die "No matching log line\n";
+      die "No matching log line";
     }
 
     # Increase the count of the log type
@@ -38,8 +38,7 @@ sub count_logs_by_type {
   }
 
   # Close the log file
-  close $fh
-    or die "Could not close \"$filename\": $!";
+  close $fh or die "Could not close \"$filename\": $!";
 
   # Return the count of the log type or 0
   return $log_count{$log_type} // 0;
