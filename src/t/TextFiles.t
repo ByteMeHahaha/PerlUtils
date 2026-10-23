@@ -79,7 +79,37 @@ subtest "LineCounter.pm" => sub {
 
 subtest "LogFileParsing.pm" => sub {
   subtest "count_logs_by_type()" => sub {
+    # Write a test file to test the function results against
+    open my $fh, ">", "testing.tmp" or die "Could not create testing.tmp: $!\n";
+    print $fh <<~EOF
+    [ERR]
+    [ERR]
+    [INFO]
+    [INFO]
+    [LOG]
+    [LOG]
+    [LOG]
+    [LOG]
+    [LOG]
+    [WARN]
+    [WARN]
+    EOF
+    ;
+    close $fh;
 
+    is(
+      count_logs_by_type("INFO", "testing.tmp"),
+      2,
+      "There are two info logs counted"
+    );
+
+    is(
+      count_logs_by_type("LOG", "testing.tmp"),
+      5,
+      "There are five normal logs counted"
+    );
+
+    unlink("testing.tmp");
   };
 };
 
