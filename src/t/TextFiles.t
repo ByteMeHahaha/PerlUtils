@@ -9,22 +9,17 @@ use Utils::TextFiles::LineCounter qw(linecount non_empty_linecount);
 use Utils::TextFiles::LogFileParsing qw(count_logs_by_type);
 
 subtest "LineCounter.pm" => sub {
-  plan tests => 2;
-
-  # Write a test file to test the function results against
-  open my $fh, ">", "LineCounter.tmp" or die "Could not create LineCounter.tmp: $!\n";
-  print $fh <<~EOF
-  line 1
-  line 2
-  line 3
-  line 4
-  EOF
-  ;
-  close $fh;
-
-
   subtest "linecount()" => sub {
-    plan tests => 3;
+    # Write a test file to test the function results against
+    open my $fh, ">", "LineCounter.tmp" or die "Could not create LineCounter.tmp: $!\n";
+    print $fh <<~EOF
+    line 1
+    line 2
+    line 3
+    line 4
+    EOF
+    ;
+    close $fh;
 
     # Test that the linecount subroutine correctly returns a count of 4
     is(
@@ -48,7 +43,44 @@ subtest "LineCounter.pm" => sub {
     );
   };
 
-  unlink("LineCounter.tmp");
+  subtest "non_empty_linecount()" => sub {
+    # Write a test file to test the function results against
+    open my $fh, ">", "LineCounter.tmp" or die "Could not create LineCounter.tmp: $!\n";
+    print $fh <<~EOF
+    line 1
+    line 2
+    line 3
+    line 4
+
+    Line 5
+    Line 6
+
+    Line 7
+    EOF
+    ;
+    close $fh;
+
+    is(
+      non_empty_linecount("LineCounter.tmp"),
+      7,
+      "Counts non-empty lines"
+    );
+
+    isnt(
+      non_empty_linecount("LineCounter.tmp"),
+      9,
+      "Doesn't count empty lines"
+    );
+
+    # Delete the testing file
+    unlink "LineCounter.tmp";
+  };
+};
+
+subtest "LogFileParsing.pm" => sub {
+  subtest "count_logs_by_type()" => sub {
+
+  };
 };
 
 done_testing();
