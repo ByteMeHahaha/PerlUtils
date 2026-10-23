@@ -42,23 +42,36 @@ sub linecount {
 }
 
 sub non_empty_linecount {
+  # Extract the filename parameter from the provided arguments list
   my ($filename) = @_;
 
+  # If the file doesn't exist
   unless (-e $filename) {
+    # Return a linecount of 0
     return 0;
   }
 
+  # Open the specified file
   open my $fh, '<', $filename or die "Could not open \"$filename\": $!";
 
+  # Initialise the line count variable
   my $lc = 0;
 
+  # Loop through the file
   while (my $line = <$fh>) {
+    # Remove the trailing newline character from the line read
+    # from the file
     chomp($line);
+
+    # Only increase the linecount by 1 if the length of the line
+    # isn't 0
     $lc++ if length($line);
   }
 
+  # Close the file
   close $fh or die "Could not close \"$filename\": $!";
 
+  # Return the linecount
   return $lc;
 }
 
