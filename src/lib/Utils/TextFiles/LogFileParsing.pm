@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Exporter 'import';
 
+# Exports
 our @EXPORT_OK = qw(count_logs_by_type);
 
 sub count_logs_by_type {
