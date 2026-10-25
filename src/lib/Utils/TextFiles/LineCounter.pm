@@ -4,8 +4,11 @@ use strict;
 use warnings;
 use Exporter 'import';
 
-# Can specifically choose for import
-our @EXPORT_OK = qw(linecount non_empty_linecount);
+# Specifies what's okay for importing
+our @EXPORT_OK = qw(
+  linecount
+  non_empty_linecount
+);
 
 sub linecount {
   # Extract the filename from the arguments list

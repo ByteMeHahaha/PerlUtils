@@ -5,10 +5,16 @@ use strict;
 use warnings;
 use Test::More;
 
-use Utils::TextFiles::LineCounter qw(linecount non_empty_linecount);
-use Utils::TextFiles::LogFileParsing qw(count_logs_by_type);
+use Utils::TextFiles::LineCounter qw(
+  linecount
+  non_empty_linecount
+);
 
-subtest "LineCounter.pm" => sub {
+use Utils::TextFiles::LogFileParsing qw(
+  count_logs_by_type
+);
+
+subtest "LineCounter" => sub {
   subtest "linecount()" => sub {
     # Write a test file to test the function results against
     open my $fh, ">", "LineCounter.tmp" or die "Could not create LineCounter.tmp: $!\n";
@@ -77,7 +83,7 @@ subtest "LineCounter.pm" => sub {
   };
 };
 
-subtest "LogFileParsing.pm" => sub {
+subtest "LogFileParsing" => sub {
   subtest "count_logs_by_type()" => sub {
     # Write a test file to test the function results against
     open my $fh, ">", "testing.tmp" or die "Could not create testing.tmp: $!\n";
