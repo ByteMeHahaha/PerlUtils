@@ -48,4 +48,18 @@ sub count_logs_by_type {
   return $log_count{$log_type} // 0;
 }
 
+sub filter_logs {
+  my ($log_type, $filename) = @_;
+
+  open my $fh, '<', $filename
+    or die "Cannot open $filename: $!";
+
+  my @lines = <$fh>;
+
+  close $fh or die "Cannot close $filename: $!";
+
+  # Temporary code
+  return "";
+}
+
 1;
