@@ -37,7 +37,7 @@ sub count_logs_by_type {
       die "No matching log line";
     }
 
-    # Increase the count of the log type
+    # Increase the count of the extracted log type
     $log_count{$1}++;
   }
 
