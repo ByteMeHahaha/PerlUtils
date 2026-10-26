@@ -5,7 +5,10 @@ use warnings;
 use Exporter 'import';
 
 # Exports
-our @EXPORT_OK = qw(count_logs_by_type);
+our @EXPORT_OK = qw(
+  count_logs_by_type
+  filter_logs
+);
 
 sub count_logs_by_type {
   # Extract the parameters from the arguments list
