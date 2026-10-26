@@ -12,6 +12,7 @@ use Utils::TextFiles::LineCounter qw(
 
 use Utils::TextFiles::LogFileParsing qw(
   count_logs_by_type
+  filter_logs
 );
 
 subtest "LineCounter" => sub {
