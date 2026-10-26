@@ -1,6 +1,13 @@
 # Feature Backlog
 
-- [ ] Log file parser module
-  - [x] Log type counter
-  - [ ] Log type filter (works like `grep` but more features(?))
-- [ ] CSV parser
+- [ ] `TextFiles` Module
+  - [ ] Log Parsing
+    - [x] Log type counter
+    - [ ] Log type filter (works like `grep` but more features(?))
+  - [ ] CSV parsing
+    - [ ]
+  - [ ] General File Handling
+    - [ ] `can_open()` subroutine
+    - [ ] `cant_open()` subroutine
+    - [ ] `file_exists()` subroutine
+    - [ ] `file_not_exists()` subroutine
