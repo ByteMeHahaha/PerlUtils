@@ -49,8 +49,22 @@ sub count_logs_by_type {
 }
 
 sub filter_logs {
+  # Parameters
   my ($log_type, $filename) = @_;
 
+  # If the log type or filename are not provided
+  unless (defined $log_type && defined $filename) {
+    # Return a falsy value to indicate failure
+    return "";
+  }
+
+  # If the file provided doesn't exist
+  unless (-e $filename) {
+    # Return a falsy value to indicate failure
+    return "";
+  }
+
+  # Open the specified file
   open my $fh, '<', $filename
     or die "Cannot open $filename: $!";
 
