@@ -4,36 +4,6 @@ use strict;
 use warnings;
 use Exporter 'import';
 
-=pod
-
-=head1 NAME
-
-C<LogFileParsing> - A file parsing module for log files.
-
-=head1 SYNOPSIS
-
-  use Utils::TextFiles::LogFileParsing qw(count_logs_by_type);
-
-  my $count = count_logs_by_type('ERR', 'app.log');
-
-  print "$count\n";
-
-=head1 DESCRIPTION
-
-=for comment
-DO THIS LATER
-
-=head1 METHODS
-
-=for comment
-Document methods later
-
-=head1 AUTHOR
-
-Ethan Kletschke
-
-=cut
-
 # Exports
 our @EXPORT_OK = qw(
   count_logs_by_type
@@ -93,3 +63,35 @@ sub filter_logs {
 }
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+C<LogFileParsing> - A file parsing module for log files.
+
+=head1 SYNOPSIS
+
+  use Utils::TextFiles::LogFileParsing qw(count_logs_by_type);
+
+  my $count = count_logs_by_type('ERR', 'app.log');
+
+  print "$count\n";
+
+=head1 DESCRIPTION
+
+=for comment
+DO THIS LATER
+
+=head1 METHODS
+
+=for comment
+Document methods later
+
+=head1 AUTHOR
+
+Ethan Kletschke
+
+=cut
