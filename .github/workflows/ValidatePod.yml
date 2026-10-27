@@ -22,9 +22,7 @@ jobs:
       - name: Validate Every Module's POD Syntax
         run: |
           (
-            cd src
-
-            for perlFile in lib/**/*.pm; do
-              podchecker "$perlFile" || true
+            for perlFile in src/lib/**/*.pm; do
+              podchecker "$perlFile"
             done
           )
