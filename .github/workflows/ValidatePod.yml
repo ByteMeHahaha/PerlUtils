@@ -21,8 +21,4 @@ jobs:
 
       - name: Validate Every Module's POD Syntax
         run: |
-          (
-            for perlFile in src/lib/**/*.pm; do
-              podchecker "$perlFile"
-            done
-          )
+          find lib -type f -name '*.pm' -exec podchecker {} \;
