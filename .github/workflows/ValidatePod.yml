@@ -21,4 +21,4 @@ jobs:
 
       - name: Validate Every Module's POD Syntax
         run: |
-          find lib -type f -name '*.pm' -exec podchecker {} \;
+          find src -type f -name '*.pm' -exec podchecker {} \;
