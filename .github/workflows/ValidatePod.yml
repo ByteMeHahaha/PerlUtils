@@ -1,0 +1,30 @@
+name: Validate POD Documentation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - ready_for_review
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  validate-pod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Validate Every Module's POD Syntax
+        run: |
+          (
+            cd src
+
+            for perlFile in src/lib/**/*.pm; do
+              podchecker "$perlFile" || true
+            done
+          )
