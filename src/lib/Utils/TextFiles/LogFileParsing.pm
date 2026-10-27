@@ -72,8 +72,7 @@ sub filter_logs {
 
   close $fh or die "Cannot close $filename: $!";
 
-  # Temporary code
-  return "";
+  return grep { /^\[?$log_type\]?:?/i } @lines;
 }
 
 1;
