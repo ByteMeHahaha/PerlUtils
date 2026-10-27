@@ -3,7 +3,7 @@
 - [ ] `TextFiles` Module
   - [ ] Log Parsing
     - [x] Log type counter
-    - [ ] Log type filter (works like `grep` but more features(?))
+    - [ ] Log type filter (works like UNIX `grep` but more features(?))
   - [ ] CSV parsing
     - [ ]
   - [ ] General File Handling
