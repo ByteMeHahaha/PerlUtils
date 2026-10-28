@@ -104,8 +104,60 @@ and using log files.
 
 =head1 METHODS
 
-=for comment
-Document methods later
+=head2 count_logs_by_type()
+
+Counts the number of logs of a certain type in a
+provided log file.
+
+Each line is tested against the RegEx C</^\[?([a-z]+)\]?:?/i>, which
+allows for the following log types as line prefixes:
+
+=over 4
+
+=item * C<[LOG]>
+
+=item * C<Log:>
+
+=item * C<[LOG]:>
+
+=item * C<[log]>
+
+=back
+
+=head3 PARAMETERS
+
+=over 4
+
+=item C<$log_type>
+
+The type of log to count.
+
+=item C<$filename>
+
+The relative path to the log file, including the file extension.
+
+=back
+
+=head3 ERROR HANDLING
+
+If the file specified with C<$filename> doesn't exist, the method
+currently calls C<die> with a stack trace. This behaviour is subject
+to change.
+
+=head3 LIMITATIONS
+
+The log type passed to the function has to include only the text
+of the log type. For example, if the file includes
+C<[ERR]>, the input must be passed without the square
+brackets, i.e., C<ERR>.
+
+=head3 EXAMPLE USAGE
+
+  use Utils::TextFiles::LogFileParsing qw(
+    count_logs_by_type
+  );
+
+  print count_logs_by_type("ERR", "dev.log"), "\n";
 
 =head1 AUTHOR
 
