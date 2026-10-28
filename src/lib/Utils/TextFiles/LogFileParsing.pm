@@ -145,8 +145,8 @@ C<0> if the log type was not found in the log file.
 
 =head3 ERROR HANDLING
 
-If the file specified with C<$filename> doesn't exist, the method
-currently calls C<die> with a stack trace. This behaviour is subject
+If the file specified with C<$filename> doesn't open or close correctly,
+the method currently calls C<die> with a stack trace. This behaviour is subject
 to change.
 
 =head3 LIMITATIONS
@@ -168,17 +168,46 @@ brackets, i.e., C<ERR>.
 
 Filters a log file by a specific log type.
 
-Each log line is tested against the RegEx C</^\[?$log_type\]?:?/i>.
+Each log line is tested against the RegEx C</^\[?$log_type\]?:?/i>,
+and only the lines that match will be returned in an array.
 
 =head3 PARAMETERS
 
-Test
+=over 4
+
+=item C<$log_type>
+
+The type of log to C<grep> in the log file.
+
+=item C<$filename>
+
+The log file to C<grep>.
+
+=back
+
+=head3 RETURN VALUE
+
+Returns an array of the matched lines from C<$filename>.
+
+=head3 ERROR HANDLING
+
+If the file specified with C<$filename> doesn't open or close correctly,
+the method currently calls C<die> with a stack trace. This behaviour is subject
+to change.
 
 =head3 LIMITATIONS
 
 Unlike with L</count_logs_by_type>, you can pass C<[ERR]> for the log type,
 and it will work the same as passing C<ERR>. This is due to the use of
 L<perlfunc/"grep">.
+
+=head3 EXAMPLE USAGE
+
+  use Utils::TextFiles::LogFileParsing qw(
+    filter_logs
+  );
+
+  print filter_logs('ERR', 'dev.log'), "\n";
 
 =head1 AUTHOR
 
