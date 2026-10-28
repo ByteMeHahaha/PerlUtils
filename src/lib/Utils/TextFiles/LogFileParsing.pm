@@ -17,7 +17,7 @@ sub count_logs_by_type {
   # If the filename is not provided as an argument
   unless (defined($log_type) && defined($filename)) {
     # Abort the app (Temporary Code)
-    die "File name not provided";
+    die "Missing Parameter(s)";
   }
 
   # Open the specified log file for reading ('<')
