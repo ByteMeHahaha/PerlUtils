@@ -1,4 +1,4 @@
-package Utils::TextFiles::TextFileHandling;
+package Utils::TextFiles::Simple;
 
 use strict;
 use warnings;
