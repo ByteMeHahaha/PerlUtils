@@ -28,6 +28,10 @@ subtest "LineCounter" => sub {
     ;
     close $fh;
 
+    # Write an empty test file
+    open $fh, '>', "empty.txt" or die "Could not create empty.txt: $!\n";
+    close $fh;
+
     # Test that the linecount subroutine correctly returns a count of 4
     is(
       linecount("LineCounter.tmp"),
@@ -47,6 +51,13 @@ subtest "LineCounter" => sub {
       linecount("LineCounter.tmp"),
       0,
       "Doesn't return 0 for an existing file"
+    );
+
+    # Test that the linecount returns 0 for an empty file
+    is(
+      linecount("empty.txt"),
+      0,
+      "Returns 0 for an empty, existing file"
     );
   };
 
@@ -81,6 +92,7 @@ subtest "LineCounter" => sub {
 
     # Delete the testing file
     unlink "LineCounter.tmp";
+    unlink "empty.txt";
   };
 };
 
