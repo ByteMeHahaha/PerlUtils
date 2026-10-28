@@ -104,7 +104,7 @@ and using log files.
 
 =head1 METHODS
 
-=head2 count_logs_by_type()
+=head2 count_logs_by_type
 
 Counts the number of logs of a certain type in a
 provided log file.
@@ -158,6 +158,23 @@ brackets, i.e., C<ERR>.
   );
 
   print count_logs_by_type("ERR", "dev.log"), "\n";
+
+=head2 filter_logs
+
+Filters a log file by a specific log type.
+
+Each log line is tested against the RegEx C</^\[?$log_type\]?:?/i>,
+
+
+=head3 PARAMETERS
+
+Test
+
+=head3 LIMITATIONS
+
+Unlike with L</count_logs_by_type>, you can pass C<[ERR]> for the log type,
+and it will work the same as passing C<ERR>. This is due to the use of
+L<perlfunc/"grep">.
 
 =head1 AUTHOR
 

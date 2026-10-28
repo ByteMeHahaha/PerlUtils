@@ -143,6 +143,12 @@ subtest "LogFileParsing" => sub {
       "Filters 2 Error logs"
     );
 
+    is(
+      scalar filter_logs('[ERR]', 'testing.tmp'),
+      2,
+      "Filters 2 Error logs including square brackets in the log type argument's value"
+    );
+
     unlink("testing.tmp");
   };
 };
