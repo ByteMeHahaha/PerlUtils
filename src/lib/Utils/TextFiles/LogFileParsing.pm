@@ -163,8 +163,7 @@ brackets, i.e., C<ERR>.
 
 Filters a log file by a specific log type.
 
-Each log line is tested against the RegEx C</^\[?$log_type\]?:?/i>,
-
+Each log line is tested against the RegEx C</^\[?$log_type\]?:?/i>.
 
 =head3 PARAMETERS
 
