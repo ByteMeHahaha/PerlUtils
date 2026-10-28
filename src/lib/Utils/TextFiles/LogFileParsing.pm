@@ -5,7 +5,10 @@ use warnings;
 use Exporter 'import';
 
 # Exports
-our @EXPORT_OK = qw(count_logs_by_type);
+our @EXPORT_OK = qw(
+  count_logs_by_type
+  filter_logs
+);
 
 sub count_logs_by_type {
   # Extract the parameters from the arguments list
@@ -28,13 +31,13 @@ sub count_logs_by_type {
     # Remove the newline character from the end of $line
     chomp($line);
 
-    # If the start of the line doesn't match the regex (see readme)
+    # If the start of the line doesn't match the regex (see module manual)
     unless ($line =~ /^\[?([a-zA-Z]+)\]?/) {
       # Abort the program (temporary code)
       die "No matching log line";
     }
 
-    # Increase the count of the log type
+    # Increase the count of the extracted log type
     $log_count{$1}++;
   }
 
@@ -45,4 +48,67 @@ sub count_logs_by_type {
   return $log_count{$log_type} // 0;
 }
 
+sub filter_logs {
+  # Parameters
+  my ($log_type, $filename) = @_;
+
+  # If the log type or filename are not provided
+  unless (defined $log_type && defined $filename) {
+    # Return a falsy value to indicate failure
+    return "";
+  }
+
+  # If the file provided doesn't exist
+  unless (-e $filename) {
+    # Return a falsy value to indicate failure
+    return "";
+  }
+
+  # Open the specified file
+  open my $fh, '<', $filename
+    or die "Cannot open $filename: $!";
+
+  # Read the file into the @lines array
+  my @lines = <$fh>;
+
+  # Close the file
+  close $fh or die "Cannot close $filename: $!";
+
+  # Return the lines that start with the log type provided
+  # (see POD documentation for explanation on RegEx)
+  return grep { /^\[?$log_type\]?:?/i } @lines;
+}
+
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+C<LogFileParsing> - A file parsing module for log files.
+
+=head1 SYNOPSIS
+
+  use Utils::TextFiles::LogFileParsing qw(count_logs_by_type);
+
+  my $count = count_logs_by_type('ERR', 'app.log');
+
+  print "$count\n";
+
+=head1 DESCRIPTION
+
+=for comment
+DO THIS LATER
+
+=head1 METHODS
+
+=for comment
+Document methods later
+
+=head1 AUTHOR
+
+Ethan Kletschke
+
+=cut

@@ -12,6 +12,7 @@ use Utils::TextFiles::LineCounter qw(
 
 use Utils::TextFiles::LogFileParsing qw(
   count_logs_by_type
+  filter_logs
 );
 
 subtest "LineCounter" => sub {
@@ -113,6 +114,33 @@ subtest "LogFileParsing" => sub {
       count_logs_by_type("LOG", "testing.tmp"),
       5,
       "There are five normal logs counted"
+    );
+
+    unlink("testing.tmp");
+  };
+
+  subtest "filter_logs()" => sub {
+    open my $fh, ">", "testing.tmp" or die "Could not create testing.tmp: $!\n";
+    print $fh <<~EOF
+    [ERR]
+    [ERR]
+    [INFO]
+    [INFO]
+    [LOG]
+    [LOG]
+    [LOG]
+    [LOG]
+    [LOG]
+    [WARN]
+    [WARN]
+    EOF
+    ;
+    close $fh;
+
+    is(
+      scalar filter_logs('ERR', 'testing.tmp'),
+      2,
+      "Filters 2 Error logs"
     );
 
     unlink("testing.tmp");
