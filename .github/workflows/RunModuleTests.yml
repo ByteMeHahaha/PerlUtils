@@ -20,4 +20,8 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Run Module Tests
-        run: prove -lv src/t/*
+        run: |
+          (
+            cd src
+            prove -lv t/*
+          )
