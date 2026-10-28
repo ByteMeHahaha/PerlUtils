@@ -99,8 +99,8 @@ C<LogFileParsing> - A file parsing module for log files.
 
 =head1 DESCRIPTION
 
-=for comment
-DO THIS LATER
+The C<LogFileParsing> module provides utility functions for parsing, handling,
+and using log files.
 
 =head1 METHODS
 
