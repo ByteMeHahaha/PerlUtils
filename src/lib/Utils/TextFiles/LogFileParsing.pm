@@ -31,8 +31,8 @@ sub count_logs_by_type {
     # Remove the newline character from the end of $line
     chomp($line);
 
-    # If the start of the line doesn't match the regex (see module manual)
-    unless ($line =~ /^\[?([a-zA-Z]+)\]?/) {
+    # If the start of the line doesn't match the regex (see module POD)
+    unless ($line =~ /^\[?([a-z]+)\]?:?/i) {
       # Abort the program (temporary code)
       die "No matching log line";
     }
@@ -99,13 +99,115 @@ C<LogFileParsing> - A file parsing module for log files.
 
 =head1 DESCRIPTION
 
-=for comment
-DO THIS LATER
+The C<LogFileParsing> module provides utility functions for parsing, handling,
+and using log files.
 
 =head1 METHODS
 
-=for comment
-Document methods later
+=head2 count_logs_by_type
+
+Counts the number of logs of a certain type in a
+provided log file.
+
+Each line is tested against the RegEx C</^\[?([a-z]+)\]?:?/i>, which
+allows for the following log types as line prefixes:
+
+=over 4
+
+=item * C<[LOG]>
+
+=item * C<Log:>
+
+=item * C<[LOG]:>
+
+=item * C<[log]>
+
+=back
+
+=head3 PARAMETERS
+
+=over 4
+
+=item C<$log_type>
+
+The type of log to count.
+
+=item C<$filename>
+
+The relative path to the log file, including the file extension.
+
+=back
+
+=head3 RETURN VALUE
+
+Returns an integer, i.e., the number of lines for the provided log type, or
+C<0> if the log type was not found in the log file.
+
+=head3 ERROR HANDLING
+
+If the file specified with C<$filename> doesn't open or close correctly,
+the method currently calls C<die> with a stack trace. This behaviour is subject
+to change.
+
+=head3 LIMITATIONS
+
+The log type passed to the function has to include only the text
+of the log type. For example, if the file includes
+C<[ERR]>, the input must be passed without the square
+brackets, i.e., C<ERR>.
+
+=head3 EXAMPLE USAGE
+
+  use Utils::TextFiles::LogFileParsing qw(
+    count_logs_by_type
+  );
+
+  print count_logs_by_type("ERR", "dev.log"), "\n";
+
+=head2 filter_logs
+
+Filters a log file by a specific log type.
+
+Each log line is tested against the RegEx C</^\[?$log_type\]?:?/i>,
+and only the lines that match will be returned in an array.
+
+=head3 PARAMETERS
+
+=over 4
+
+=item C<$log_type>
+
+The type of log to C<grep> in the log file.
+
+=item C<$filename>
+
+The log file to C<grep>.
+
+=back
+
+=head3 RETURN VALUE
+
+Returns an array of the matched lines from C<$filename>.
+
+=head3 ERROR HANDLING
+
+If the file specified with C<$filename> doesn't open or close correctly,
+the method currently calls C<die> with a stack trace. This behaviour is subject
+to change.
+
+=head3 LIMITATIONS
+
+Unlike with L</count_logs_by_type>, you can pass C<[ERR]> for the log type,
+and it will work the same as passing C<ERR>. This is due to the use of
+L<perlfunc/"grep">.
+
+=head3 EXAMPLE USAGE
+
+  use Utils::TextFiles::LogFileParsing qw(
+    filter_logs
+  );
+
+  print filter_logs('ERR', 'dev.log'), "\n";
 
 =head1 AUTHOR
 

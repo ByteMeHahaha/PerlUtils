@@ -77,3 +77,90 @@ sub non_empty_linecount {
 }
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+C<LineCounter> - A file parsing module for counting lines in files.
+
+=head1 SYNOPSIS
+
+  use Utils::TextFiles::LineCounter qw(non_empty_linecount);
+
+  print non_empty_linecount('dev.log'), "\n";
+
+=head1 DESCRIPTION
+
+The C<LineCounter> module provides utility functions for counting lines in files.
+
+=head1 METHODS
+
+=head2 linecount
+
+Counts the number of lines in a text file. Also counts blank lines.
+
+=head3 PARAMETERS
+
+=over 4
+
+=item C<$filename>
+
+The name of the file whose lines to count.
+
+=back
+
+=head3 RETURN VALUE
+
+Returns an integer representing the line count for that file, or
+C<0> if the file doesn't exist.
+
+=head3 ERROR HANDLING
+
+If the file specified by C<$filename> cannot be opened or closed correctly,
+the function calls C<die>. This behaviour is subject to change.
+
+=head3 EXAMPLE USAGE
+
+  use Utils::TextFiles::LineCounter qw(linecount);
+
+  print linecount('dev.log'), "\n";
+
+=head2 non_empty_linecount
+
+Performs the same line-counting as L</linecount>, but
+doesn't count empty lines.
+
+=head3 PARAMETERS
+
+=over 4
+
+=item C<$filename>
+
+The name of the file whose lines are to be counted.
+
+=back
+
+=head3 RETURN VALUE
+
+Returns an integer representing the count of non-empty lines for
+C<$filename>.
+
+=head3 ERROR HANDLING
+
+If the file specified by C<$filename> cannot be opened or closed correctly,
+the function calls C<die>. This behaviour is subject to change.
+
+=head3 EXAMPLE USAGE
+
+  use Utils::TextFiles::LineCounter qw(non_empty_linecount);
+
+  print non_empty_linecount('dev.log'), "\n";
+
+=head1 AUTHOR
+
+Ethan Kletschke
+
+=cut
