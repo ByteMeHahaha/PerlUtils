@@ -68,10 +68,14 @@ sub filter_logs {
   open my $fh, '<', $filename
     or die "Cannot open $filename: $!";
 
+  # Read the file into the @lines array
   my @lines = <$fh>;
 
+  # Close the file
   close $fh or die "Cannot close $filename: $!";
 
+  # Return the lines that start with the log type provided
+  # (see POD documentation for explanation on RegEx)
   return grep { /^\[?$log_type\]?:?/i } @lines;
 }
 
