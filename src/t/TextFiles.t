@@ -118,6 +118,33 @@ subtest "LogFileParsing" => sub {
 
     unlink("testing.tmp");
   };
+
+  subtest "filter_logs()" => sub {
+    open my $fh, ">", "testing.tmp" or die "Could not create testing.tmp: $!\n";
+    print $fh <<~EOF
+    [ERR]
+    [ERR]
+    [INFO]
+    [INFO]
+    [LOG]
+    [LOG]
+    [LOG]
+    [LOG]
+    [LOG]
+    [WARN]
+    [WARN]
+    EOF
+    ;
+    close $fh;
+
+    is(
+      scalar filter_logs('ERR', 'testing.tmp'),
+      2,
+      "Filters 2 Error logs"
+    );
+
+    unlink("testing.tmp");
+  };
 };
 
 done_testing();
