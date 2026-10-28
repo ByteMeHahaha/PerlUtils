@@ -138,6 +138,11 @@ The relative path to the log file, including the file extension.
 
 =back
 
+=head3 RETURN VALUE
+
+Returns an integer, i.e., the number of lines for the provided log type, or
+C<0> if the log type was not found in the log file.
+
 =head3 ERROR HANDLING
 
 If the file specified with C<$filename> doesn't exist, the method
