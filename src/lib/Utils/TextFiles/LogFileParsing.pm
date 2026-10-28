@@ -31,8 +31,8 @@ sub count_logs_by_type {
     # Remove the newline character from the end of $line
     chomp($line);
 
-    # If the start of the line doesn't match the regex (see module manual)
-    unless ($line =~ /^\[?([a-zA-Z]+)\]?/) {
+    # If the start of the line doesn't match the regex (see module POD)
+    unless ($line =~ /^\[?([a-z]+)\]?:?/i) {
       # Abort the program (temporary code)
       die "No matching log line";
     }
