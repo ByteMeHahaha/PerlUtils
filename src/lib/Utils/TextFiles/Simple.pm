@@ -48,8 +48,7 @@ C<TextFiles::Simple> - Simple utilities for handling text files.
 =head1 DESCRIPTION
 
 The C<TextFiles::Simple> module provides utilities for
-simple file handling, such as testing if a file can be opened successfully or
-testing if it's writable, readable, or a directory.
+simple file handling, such as testing if a file can be opened successfully.
 
 =for comment
 FINISH DOCS LATER
