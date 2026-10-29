@@ -37,4 +37,21 @@ __END__
 
 C<TextFiles::Simple> - Simple utilities for handling text files.
 
+=head1 SYNPOSIS
+
+  use Utils::TextFiles::Simple qw(can_open);
+
+  unless (can_open("dev.log")) {
+    die "Can't open dev.log: $!";
+  }
+
+=head1 DESCRIPTION
+
+The C<TextFiles::Simple> module provides utilities for
+simple file handling, such as testing if a file can be opened successfully or
+testing if it's writable, readable, or a directory.
+
+=for comment
+FINISH DOCS LATER
+
 =cut
