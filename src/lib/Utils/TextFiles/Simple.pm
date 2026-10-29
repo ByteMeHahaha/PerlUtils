@@ -13,7 +13,7 @@ sub can_open {
   my ($filename) = @_;
 
   open my $fh, '<', $filename or return 0;
-  close $fh or die "Can't close $filename: $!";
+  close $fh or return 0;
 
   return 1;
 }
@@ -22,7 +22,7 @@ sub cant_open {
   my ($filename) = @_;
 
   open my $fh, '<', $filename or return 1;
-  close $fh or die "Can't close $filename: $!";
+  close $fh or return 1;
 
   return 0;
 }
