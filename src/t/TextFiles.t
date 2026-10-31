@@ -4,21 +4,68 @@ use lib 'lib';
 use strict;
 use warnings;
 use Test::More;
-
+use Utils::TextFiles::Simple qw(
+  can_open
+  cant_open
+);
 use Utils::TextFiles::LineCounter qw(
   linecount
   non_empty_linecount
 );
-
 use Utils::TextFiles::LogFileParsing qw(
   count_logs_by_type
   filter_logs
 );
 
+# Tests for Simple.pm
+subtest "Simple" => sub {
+  subtest "can_open()" => sub {
+    open my $fh, '>', "Test.tmp"
+      or die "Could not create Test.tmp: $!";
+    print $fh "I can be opened!\n";
+    close $fh;
+
+    is(
+      can_open("Test.tmp"),
+      1,
+      "File can be opened and sub returns 0"
+    );
+
+    isnt(
+      can_open("Doesnt-Exist.tmp"),
+      1,
+      "Non-existent file returns 0"
+    );
+
+    unlink "Test.tmp";
+  };
+
+  subtest "cant_open()" => sub {
+    open my $fh, '>', "Exists.tmp"
+      or die "Could not open Exists.tmp: $!";
+    close $fh;
+
+    is(
+      cant_open("Exists.tmp"),
+      0,
+      "File does open, and sub returns 0"
+    );
+
+    is(
+      cant_open("Non-Existent-File.tmp"),
+      1,
+      "File cannot open, and sub returns 1"
+    );
+
+    unlink "Exists.tmp";
+  };
+};
+
+# Tests for LineCounter.pm
 subtest "LineCounter" => sub {
   subtest "linecount()" => sub {
     # Write a test file to test the function results against
-    open my $fh, ">", "LineCounter.tmp" or die "Could not create LineCounter.tmp: $!\n";
+    open my $fh, ">", "LineCounter.tmp" or die "Could not create LineCounter.tmp: $!";
     print $fh <<~EOF
     line 1
     line 2
@@ -29,7 +76,7 @@ subtest "LineCounter" => sub {
     close $fh;
 
     # Write an empty test file
-    open $fh, '>', "empty.txt" or die "Could not create empty.txt: $!\n";
+    open $fh, '>', "empty.txt" or die "Could not create empty.txt: $!";
     close $fh;
 
     # Test that the linecount subroutine correctly returns a count of 4
@@ -63,7 +110,7 @@ subtest "LineCounter" => sub {
 
   subtest "non_empty_linecount()" => sub {
     # Write a test file to test the function results against
-    open my $fh, ">", "LineCounter.tmp" or die "Could not create LineCounter.tmp: $!\n";
+    open my $fh, ">", "LineCounter.tmp" or die "Could not create LineCounter.tmp: $!";
     print $fh <<~EOF
     line 1
     line 2
@@ -90,12 +137,13 @@ subtest "LineCounter" => sub {
       "Doesn't count empty lines"
     );
 
-    # Delete the testing file
+    # Delete the testing files
     unlink "LineCounter.tmp";
     unlink "empty.txt";
   };
 };
 
+# Tests for LogFileParsing.pm
 subtest "LogFileParsing" => sub {
   subtest "count_logs_by_type()" => sub {
     # Write a test file to test the function results against
@@ -165,4 +213,5 @@ subtest "LogFileParsing" => sub {
   };
 };
 
-done_testing();
+# Check that the number of executed tests is correct
+done_testing(3);
