@@ -50,7 +50,43 @@ C<TextFiles::Simple> - Simple utilities for handling text files.
 The C<TextFiles::Simple> module provides utilities for
 simple file handling, such as testing if a file can be opened successfully.
 
-=for comment
-FINISH DOCS LATER
+=head1 METHODS
+
+=head2 can_open
+
+Tests if a file can be opened successfully.
+
+=head3 PARAMETERS
+
+=over 4
+
+=item C<$filename>
+
+The name of the file to try open.
+
+=back
+
+=head3 RETURN VALUE
+
+Returns C<1> if it can, or C<0> if it cannot be opened successfully.
+
+=head2 cant_open
+
+Tests if a file B<cannot> be opened successfully.
+
+=head3 PARAMETERS
+
+=over 4
+
+=item C<$filename>
+
+The name of the file to try open.
+
+=back
+
+=head3 RETURN VALUE
+
+Returns C<1> if it cannot be opened successfully, or
+C<0> if it can open successfully.
 
 =cut
