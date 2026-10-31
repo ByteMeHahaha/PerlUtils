@@ -4,22 +4,20 @@ use lib 'lib';
 use strict;
 use warnings;
 use Test::More;
-
 use Utils::TextFiles::Simple qw(
   can_open
   cant_open
 );
-
 use Utils::TextFiles::LineCounter qw(
   linecount
   non_empty_linecount
 );
-
 use Utils::TextFiles::LogFileParsing qw(
   count_logs_by_type
   filter_logs
 );
 
+# Tests for Simple.pm
 subtest "Simple" => sub {
   subtest "can_open()" => sub {
     open my $fh, '>', "Test.tmp"
@@ -63,6 +61,7 @@ subtest "Simple" => sub {
   };
 };
 
+# Tests for LineCounter.pm
 subtest "LineCounter" => sub {
   subtest "linecount()" => sub {
     # Write a test file to test the function results against
@@ -144,6 +143,7 @@ subtest "LineCounter" => sub {
   };
 };
 
+# Tests for LogFileParsing.pm
 subtest "LogFileParsing" => sub {
   subtest "count_logs_by_type()" => sub {
     # Write a test file to test the function results against
@@ -213,4 +213,5 @@ subtest "LogFileParsing" => sub {
   };
 };
 
-done_testing();
+# Check that the number of executed tests is correct
+done_testing(3);
