@@ -1,12 +1,12 @@
 project-meta:
   project-name: PerlUtils
   date-started: 2026-10-20
-  last-updated: 2026-10-30
+  last-updated: 2026-10-31
   languages:
     - Perl
   status: Experimental
   license: MIT
-  version: 0.0.1
+  version: 0.0.5
 
 build:
   dev-environments:
