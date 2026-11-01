@@ -6,7 +6,7 @@ project-meta:
     - Perl
   status: Experimental
   license: MIT
-  version: 0.0.6
+  version: 0.0.7
 
 build:
   dev-environments:
@@ -21,6 +21,7 @@ build:
 
 team:
   author: Ethan Kletschke
+  owner: Ethan Kletschke
   contributors:
     - name: Ethan Kletschke
       role: Author and Owner
