@@ -17,7 +17,7 @@ use Utils::TextFiles::LogFileParsing qw(
 );
 
 # Tests for Simple.pm
-subtest "Simple" => sub {
+subtest "TextFiles::Simple" => sub {
   subtest "can_open()" => sub {
     open my $fh, '>', "Test.tmp"
       or die "Could not create Test.tmp: $!";
@@ -61,7 +61,7 @@ subtest "Simple" => sub {
 };
 
 # Tests for LineCounter.pm
-subtest "LineCounter" => sub {
+subtest "TextFiles::LineCounter" => sub {
   subtest "linecount()" => sub {
     # Write a test file to test the function results against
     open my $fh, ">", "LineCounter.tmp" or die "Could not create LineCounter.tmp: $!";
@@ -143,7 +143,7 @@ subtest "LineCounter" => sub {
 };
 
 # Tests for LogFileParsing.pm
-subtest "LogFileParsing" => sub {
+subtest "TextFiles::LogFileParsing" => sub {
   subtest "count_logs_by_type()" => sub {
     # Write a test file to test the function results against
     open my $fh, ">", "testing.tmp" or die "Could not create testing.tmp: $!\n";
