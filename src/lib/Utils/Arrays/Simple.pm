@@ -4,6 +4,10 @@ use strict;
 use warnings;
 use Exporter 'import';
 
+our @EXPORT_OK = qw(
+  union
+);
+
 sub union {
   # Parameters
   my ($arr1, $arr2) = @_;
