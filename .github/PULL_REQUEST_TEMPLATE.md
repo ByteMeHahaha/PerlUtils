@@ -6,7 +6,7 @@ No code changes.
 
 ## CI/CD Changes
 
-No CI/CD or workflow changes.
+No CI/CD, workflow, or module test changes.
 
 ## Documentation Changes
 
