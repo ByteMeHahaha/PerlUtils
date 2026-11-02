@@ -137,6 +137,39 @@ A reference to the second array.
 Returns an array of the two provided arrays'
 union elements.
 
+=head2 intersection
+
+Finds the intersection of two arrays, i.e., elements
+present in both arrays, excluding duplicate values.
+
+=head3 PARAMETERS
+
+=over 4
+
+=item C<$arr1>
+
+A reference to the first array.
+
+=item C<$arr2>
+
+A reference to the second array.
+
+=back
+
+=head3 RETURN VALUE
+
+Returns a new array containing elements present
+in both arrays, without duplicates.
+
+=head3 EXAMPLE USAGE
+
+  my @arr1 = (1, 2, 3, 4);
+  my @arr2 = (3, 4, 5, 6);
+
+  my @intersect = intersection(\@arr1, \@arr2);
+
+  print "@intersect\n"; # 3 4
+
 =head1 AUTHOR
 
 Ethan Kletschke (L<mailto:ethankletschke@outlook.com>)
