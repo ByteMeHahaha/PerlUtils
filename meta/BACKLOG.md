@@ -4,16 +4,13 @@ _Last Updated: 2026-11-01, 07:19am_
 
 - [ ] `TextFiles` Module
   - [ ] `TextFiles::LogFileParsing`
-    - [x] Log type counter
-    - [x] Log type filter (works like UNIX `grep` but more features(?))
     - [ ] Log file validator
       - Validates log lines against a provided RegEx format
   - [ ] `TextFiles::ParseCSV`
     - [ ] `validate_csv()`
       - Validates that a file is a valid `.csv` file
   - [ ] `TextFiles::Simple`
-    - [x] `can_open()` subroutine
-    - [x] `cant_open()` subroutine
+    - Must plan more simple text file methods
 - [ ] `Arrays` Module
   - [ ] `Arrays::Simple`
     - [ ] `is_empty()` subroutine
