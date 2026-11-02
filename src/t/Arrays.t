@@ -15,7 +15,11 @@ subtest "Arrays::Sets" => sub {
 
     my @res = union(\@arr1, \@arr2);
 
-    is_deeply(\@res, [1, 2, 3, 4, 5, 6], "Correctly determines the union");
+    is_deeply(
+      \@res,
+      [1, 2, 3, 4, 5, 6],
+      "Correctly determines the union of two numeric arrays"
+    );
   };
 
   done_testing();
