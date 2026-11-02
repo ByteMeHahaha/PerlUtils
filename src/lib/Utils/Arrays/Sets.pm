@@ -77,6 +77,9 @@ It provides functions such as L</union>, which finds the union of two arrays.
 
 =head2 union
 
+Finds the union of both arrays provided, i.e., a collection of all
+unique elements present in either array.
+
 =head3 PARAMETERS
 
 =over 4
@@ -90,6 +93,11 @@ A reference to the first array.
 A reference to the second array.
 
 =back
+
+=head3 RETURN VALUE
+
+Returns an array of the two provided arrays'
+union elements.
 
 =head1 AUTHOR
 
