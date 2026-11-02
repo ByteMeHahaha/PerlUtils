@@ -89,4 +89,8 @@ The name of the file to try open.
 Returns C<1> if it cannot be opened successfully, or
 C<0> if it can open successfully.
 
+=head1 AUTHOR
+
+Ethan Kletschke (L<mailto:ethankletschke@outlook.com>)
+
 =cut

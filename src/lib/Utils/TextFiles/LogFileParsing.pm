@@ -211,6 +211,6 @@ L<perlfunc/"grep">.
 
 =head1 AUTHOR
 
-Ethan Kletschke
+Ethan Kletschke (L<mailto:ethankletschke@outlook.com>)
 
 =cut

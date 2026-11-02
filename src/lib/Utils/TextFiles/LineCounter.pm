@@ -161,6 +161,6 @@ the function calls C<die>. This behaviour is subject to change.
 
 =head1 AUTHOR
 
-Ethan Kletschke
+Ethan Kletschke (L<mailto:ethankletschke@outlook.com>)
 
 =cut
