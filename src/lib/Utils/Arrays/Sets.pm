@@ -6,6 +6,7 @@ use Exporter 'import';
 
 our @EXPORT_OK = qw(
   union
+  intersection
 );
 
 sub union {
@@ -43,6 +44,43 @@ sub union {
 
   # Return the result array
   return @union;
+}
+
+sub intersection {
+  # Parameters
+  my ($arr1, $arr2) = @_;
+
+  # Intersection array to return
+  my @intersect;
+
+  # Tracking hash to keep track of what elements were encountered
+  # in both arrays.
+  my %trackingHash;
+
+  # Loop through the first provided array
+  foreach my $element (@$arr1) {
+    # If the element was not previously encountered
+    if (not exists $trackingHash{$element}) {
+      # Set it to a true value in the tracking hash
+      $trackingHash{$element} = 1;
+    }
+  }
+
+  # Loop through the second provided array
+  foreach my $element (@$arr2) {
+    # If the element was found in array 1
+    if (exists $trackingHash{$element}) {
+      # Remove it from the tracking hash.
+      # This prevents duplicate elements in the
+      # second array from being added repeatedly
+      delete $trackingHash{$element};
+      # Add
+      push @intersect, $element;
+    }
+  }
+
+  # Return the intersection
+  return @intersect;
 }
 
 1;
