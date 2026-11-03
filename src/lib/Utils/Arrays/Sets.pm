@@ -6,6 +6,7 @@ use Exporter 'import';
 
 our @EXPORT_OK = qw(
   union
+  intersection
 );
 
 sub union {
@@ -45,6 +46,44 @@ sub union {
   return @union;
 }
 
+sub intersection {
+  # Parameters
+  my ($arr1, $arr2) = @_;
+
+  # Intersection array to return
+  my @intersect;
+
+  # Tracking hash to keep track of what elements were encountered
+  # in both arrays.
+  my %trackingHash;
+
+  # Loop through the first provided array
+  foreach my $element (@$arr1) {
+    # If the element was not previously encountered
+    if (not exists $trackingHash{$element}) {
+      # Set it to a true value in the tracking hash
+      $trackingHash{$element} = 1;
+    }
+  }
+
+  # Loop through the second provided array
+  foreach my $element (@$arr2) {
+    # If the element was found in array 1
+    if (exists $trackingHash{$element}) {
+      # Remove it from the tracking hash.
+      # This prevents duplicate elements in the
+      # second array from being added repeatedly
+      delete $trackingHash{$element};
+
+      # Add the element to the intersection
+      push @intersect, $element;
+    }
+  }
+
+  # Return the intersection
+  return @intersect;
+}
+
 1;
 
 __END__
@@ -77,6 +116,9 @@ It provides functions such as L</union>, which finds the union of two arrays.
 
 =head2 union
 
+Finds the union of both arrays provided, i.e., a collection of all
+unique elements present in either array.
+
 =head3 PARAMETERS
 
 =over 4
@@ -90,6 +132,44 @@ A reference to the first array.
 A reference to the second array.
 
 =back
+
+=head3 RETURN VALUE
+
+Returns an array of the two provided arrays'
+union elements.
+
+=head2 intersection
+
+Finds the intersection of two arrays, i.e., elements
+present in both arrays, excluding duplicate values.
+
+=head3 PARAMETERS
+
+=over 4
+
+=item C<$arr1>
+
+A reference to the first array.
+
+=item C<$arr2>
+
+A reference to the second array.
+
+=back
+
+=head3 RETURN VALUE
+
+Returns a new array containing elements present
+in both arrays, without duplicates.
+
+=head3 EXAMPLE USAGE
+
+  my @arr1 = (1, 2, 3, 4);
+  my @arr2 = (3, 4, 5, 6);
+
+  my @intersect = intersection(\@arr1, \@arr2);
+
+  print "@intersect\n"; # 3 4
 
 =head1 AUTHOR
 
