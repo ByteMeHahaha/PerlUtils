@@ -10,7 +10,8 @@ _Last Updated: 2026-11-01, 07:19am_
     - [ ] `validate_csv()`
       - Validates that a file is a valid `.csv` file
   - [ ] `TextFiles::Simple`
-    - Must plan more simple text file methods
+    - [ ] `trunc_file()` subroutine
+
 - [ ] `Arrays` Module
   - [ ] `Arrays::Simple`
     - [ ] `is_empty()` subroutine
@@ -21,7 +22,7 @@ _Last Updated: 2026-11-01, 07:19am_
       - Appends items to an array using a list of arbitrary arguments
   - [ ] `Arrays::Sets`
     - [ ] Move `union()` subroutine
-    - [ ] `intersection()` subroutine
+    - [x] `intersection()` subroutine
     - [ ] `is_subset()` subroutine
     - [ ] `difference()` subroutine
     - [ ] `symmetric_difference()` subroutine
