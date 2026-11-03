@@ -74,7 +74,8 @@ sub intersection {
       # This prevents duplicate elements in the
       # second array from being added repeatedly
       delete $trackingHash{$element};
-      # Add
+
+      # Add the element to the intersection
       push @intersect, $element;
     }
   }
