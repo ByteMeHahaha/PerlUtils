@@ -171,6 +171,15 @@ A reference to the second array.
 Returns an array of the two provided arrays'
 union elements.
 
+=head3 EXAMPLE USAGE
+
+  my @arr1 = (1, 2, 3, 4);
+  my @arr2 = (3, 4, 5, 6);
+
+  my @res = union(\@arr1, \@arr2);
+
+  print "@res\n"; # 1 2 3 4 5 6
+
 =head2 intersection
 
 Finds the intersection of two arrays, i.e., elements
