@@ -14,3 +14,11 @@ sub is_empty_str {
 1;
 
 __END__
+
+=pod
+
+=head1 NAME
+
+C<Strings::Simple> - Simple utilities for string handling
+
+=cut
