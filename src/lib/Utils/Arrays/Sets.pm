@@ -84,6 +84,39 @@ sub intersection {
   return @intersect;
 }
 
+sub set_difference {
+  # Parameters
+  my ($arr1, $arr2) = @_;
+
+  # Result array
+  my @diff;
+  # Tracking hash
+  my %tracking;
+
+  # Iterate through the second array to identify which elements
+  # to exclude from $arr1
+  foreach my $element (@$arr2) {
+    # If the element wasn't encountered yet
+    if (not exists $tracking{$element}) {
+      # Add it to the tracking hash
+      $tracking{$element} = 1;
+    }
+  }
+
+  foreach my $element (@$arr1) {
+    if (not exists $tracking{$element}) {
+      # Append the difference to the result array
+      push @diff, $element;
+
+      # Add it to the tracking hash to avoid duplicates
+      $tracking{$element} = 1;
+    }
+  }
+
+  # Return the result array
+  return @diff;
+}
+
 1;
 
 __END__
